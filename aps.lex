@@ -1,7 +1,6 @@
 %{
 #include <stdio.h>
 #include <string.h>
-#include "aps.tab.h"
 %}
 
 %%
@@ -25,10 +24,10 @@
 "<"                       { return LOG_LT; }
 "<="                      { return LOG_LE; }
 "and"                     { return LOG_AND; }
+"not"                     { return LOG_NOT; }
 "or"                      { return LOG_OR; }
 "=="                      { return LOG_EQ; }
 "!="                      { return LOG_NEQ; }
-"not"                     { return LOG_NOT; }
 
 "printf"                  { return PRINTF; }
 "while"                   { return WHILE; }

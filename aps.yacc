@@ -103,9 +103,10 @@ PRIOR_BIN_OP  : T_MULT
               | LOG_AND
               ;
 
-BIN_OP  : T_MINUS
+BIN_OP  : 
+        LOG_OR
+        | T_MINUS
         | T_PLUS
-        | LOG_OR
         ;
 
 UN_OP : LOG_NOT 

@@ -483,9 +483,8 @@ char *yytext;
 #line 2 "aps.lex"
 #include <stdio.h>
 #include <string.h>
-#include "aps.tab.h"
+#line 487 "lex.yy.c"
 #line 488 "lex.yy.c"
-#line 489 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -702,10 +701,10 @@ YY_DECL
 		}
 
 	{
-#line 7 "aps.lex"
+#line 6 "aps.lex"
 
 
-#line 709 "lex.yy.c"
+#line 708 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -764,155 +763,155 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "aps.lex"
+#line 8 "aps.lex"
 { return COMMA; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "aps.lex"
+#line 9 "aps.lex"
 { return SEMICOLON; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 12 "aps.lex"
+#line 11 "aps.lex"
 { return T_PLUS; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "aps.lex"
+#line 12 "aps.lex"
 { return T_MINUS; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "aps.lex"
+#line 13 "aps.lex"
 { return T_DIV; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "aps.lex"
+#line 14 "aps.lex"
 { return T_MULT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 16 "aps.lex"
+#line 15 "aps.lex"
 { return T_ASSIGN; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 18 "aps.lex"
+#line 17 "aps.lex"
 { return OPENING_BRACKET; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 19 "aps.lex"
+#line 18 "aps.lex"
 { return CLOSING_BRACKET; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 20 "aps.lex"
+#line 19 "aps.lex"
 { return OPENING_CURLY_BRACKET; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 21 "aps.lex"
+#line 20 "aps.lex"
 { return CLOSING_CURLY_BRACKET; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 23 "aps.lex"
+#line 22 "aps.lex"
 { return LOG_GT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 24 "aps.lex"
+#line 23 "aps.lex"
 { return LOG_GE; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 25 "aps.lex"
+#line 24 "aps.lex"
 { return LOG_LT; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 26 "aps.lex"
+#line 25 "aps.lex"
 { return LOG_LE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 27 "aps.lex"
+#line 26 "aps.lex"
 { return LOG_AND; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 28 "aps.lex"
+#line 27 "aps.lex"
 { return LOG_OR; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 29 "aps.lex"
+#line 28 "aps.lex"
 { return LOG_EQ; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 30 "aps.lex"
+#line 29 "aps.lex"
 { return LOG_NEQ; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 31 "aps.lex"
+#line 30 "aps.lex"
 { return LOG_NOT; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 33 "aps.lex"
+#line 32 "aps.lex"
 { return PRINTF; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 34 "aps.lex"
+#line 33 "aps.lex"
 { return WHILE; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 35 "aps.lex"
+#line 34 "aps.lex"
 { return IF; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 36 "aps.lex"
+#line 35 "aps.lex"
 { return ELSE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 37 "aps.lex"
+#line 36 "aps.lex"
 { return SCANF; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 40 "aps.lex"
-{ return TYPE; }
+#line 39 "aps.lex"
+{ return T_TYPE; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 41 "aps.lex"
-{ return NUMBER; }
+#line 40 "aps.lex"
+{ return T_NUMBER; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 42 "aps.lex"
-{ return RETURN; }
+#line 41 "aps.lex"
+{ return T_RETURN; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 43 "aps.lex"
-{ return IDENTIFIER; }
+#line 42 "aps.lex"
+{ return T_IDENTIFIER; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 46 "aps.lex"
+#line 45 "aps.lex"
 ECHO;
 	YY_BREAK
-#line 916 "lex.yy.c"
+#line 915 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1917,6 +1916,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 46 "aps.lex"
+#line 45 "aps.lex"
 
 
