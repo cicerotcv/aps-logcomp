@@ -16,7 +16,7 @@ class Lexer(SlyLexer):
         # delimiters
         T_OPENING_CURLY_BRACKET, T_CLOSING_CURLY_BRACKET, T_OPENING_BRACKET, T_CLOSING_BRACKET, STRING,
         # types
-        IF, ELSE, WHILE, TYPE_INTEGER, TYPE_STRING,
+        IF, ELSE, WHILE, TYPE,
 
         IDENTIFIER, T_COMMENT
     }
@@ -55,8 +55,7 @@ class Lexer(SlyLexer):
         t.value = self.remove_quotes(t.value)
         return t
 
-    TYPE_INTEGER = r'integer'
-    TYPE_STRING = r'string'
+    TYPE = r'integer|string'
     IF = r'if'
     ELSE = r'else'
     WHILE = r'while'
