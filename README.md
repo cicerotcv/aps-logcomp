@@ -2,11 +2,15 @@ TOP_LEVEL = { STATEMENT } ;
 
 BLOCK = "{" , { STATEMENT }, "}" ;
 
-TYPE = "integer" | "string" ;
+TYPE = "integer" | "string" | "void";
 
 IDENTIFIER_DECLARATION = TYPE , IDENTIFIER ;
 
-FUNCTION_DEFINITION = TYPE , IDENTIFIER , "(" [ , TYPE, IDENTIFIER [ , { "," , TYPE, IDENTIFIER } ] ] , ")" , BLOCK ;
+FUNCTION_DEFINITION = TYPE , IDENTIFIER , "(" [ , TYPE, IDENTIFIER [ , { "," , TYPE, IDENTIFIER } ] ] , ")" , FUNCTION_BODY;
+
+FUNCTION_BODY = "{" , { STATEMENT }, [ , FUNCTION_RETURN ] , "}";
+
+FUNCTION_RETURN = "return", EXPRESSION ;
 
 FUNCTION_CALL = IDENTIFIER , "(" [ , IDENTIFIER [ , { "," , IDENTIFIER } ] ] , ")" ;
 
@@ -28,7 +32,7 @@ ASSIGNMENT = IDENTIFIER, "=" , EXPRESSION ;
 
 IDENTIFIER = LETTER, { LETTER | DIGIT | "\_" } ;
 
-UNNARY_OPERATOR = ( "+" | "-" | "!" ) ;
+UNNARY_OPERATOR = ( "+" | "-" | "not" ) ;
 
 NUMBER = DIGIT [ { , DIGIT } ] ;
 

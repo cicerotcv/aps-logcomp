@@ -1,0 +1,1223 @@
+Terminals unused in grammar
+
+    PRINTF
+    SCANF
+
+
+State 36 conflicts: 1 shift/reduce
+State 37 conflicts: 1 shift/reduce
+State 78 conflicts: 1 shift/reduce
+State 80 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: TOP_LEVEL $end
+
+    1 empty: %empty
+
+    2 TOP_LEVEL: STATEMENT
+
+    3 RETURN: T_RETURN
+
+    4 NUMBER: T_NUMBER
+
+    5 IDENTIFIER: T_IDENTIFIER
+
+    6 statement_options: empty
+    7                  | IDENTIFIER_DECLARATION
+    8                  | FUNCTION_DEFINITION
+    9                  | FUNCTION_CALL
+   10                  | ASSIGNMENT
+   11                  | BLOCK
+   12                  | WHILE_STATEMENT
+   13                  | IF_STATEMENT
+
+   14 STATEMENT: statement_options SEMICOLON
+
+   15 BLOCK: OPENING_CURLY_BRACKET STATEMENT CLOSING_CURLY_BRACKET
+
+   16 IDENTIFIER_DECLARATION: T_TYPE IDENTIFIER
+
+   17 function_params: empty
+   18                | T_TYPE IDENTIFIER
+   19                | COMMA function_params
+
+   20 function_return: RETURN EXPRESSION
+
+   21 function_body: OPENING_CURLY_BRACKET STATEMENT CLOSING_CURLY_BRACKET
+   22              | OPENING_BRACKET STATEMENT function_return CLOSING_CURLY_BRACKET
+
+   23 FUNCTION_DEFINITION: T_TYPE IDENTIFIER OPENING_BRACKET function_params CLOSING_BRACKET function_body
+
+   24 function_args: empty
+   25              | EXPRESSION
+   26              | COMMA function_args
+
+   27 FUNCTION_CALL: IDENTIFIER OPENING_BRACKET function_args CLOSING_CURLY_BRACKET
+
+   28 FACTOR: NUMBER
+   29       | IDENTIFIER
+   30       | UN_OP FACTOR
+   31       | OPENING_BRACKET CONDITIONAL CLOSING_BRACKET
+
+   32 TERM: FACTOR
+   33     | TERM PRIOR_BIN_OP FACTOR
+
+   34 EXPRESSION: TERM
+   35           | EXPRESSION BIN_OP TERM
+
+   36 CONDITIONAL: EXPRESSION
+   37            | CONDITIONAL LOGICAL_OP EXPRESSION
+
+   38 WHILE_STATEMENT: WHILE OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK
+
+   39 IF_STATEMENT: IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK ELSE BLOCK
+   40             | IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK
+
+   41 ASSIGNMENT: IDENTIFIER T_ASSIGN EXPRESSION
+
+   42 PRIOR_BIN_OP: T_MULT
+   43             | T_DIV
+   44             | LOG_AND
+
+   45 BIN_OP: LOG_OR
+   46       | T_MINUS
+   47       | T_PLUS
+
+   48 UN_OP: LOG_NOT
+   49      | T_MINUS
+   50      | T_PLUS
+
+   51 LOGICAL_OP: LOG_AND
+   52           | LOG_OR
+   53           | LOG_EQ
+   54           | LOG_NEQ
+   55           | LOG_GE
+   56           | LOG_GT
+   57           | LOG_LE
+   58           | LOG_LT
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    COMMA (258) 19 26
+    SEMICOLON (259) 14
+    T_TYPE (260) 16 18 23
+    T_NUMBER (261) 4
+    T_RETURN (262) 3
+    T_IDENTIFIER (263) 5
+    T_PLUS (264) 47 50
+    T_MINUS (265) 46 49
+    T_MULT (266) 42
+    T_DIV (267) 43
+    T_ASSIGN (268) 41
+    OPENING_BRACKET (269) 22 23 27 31 38 39 40
+    CLOSING_BRACKET (270) 23 31 38 39 40
+    OPENING_CURLY_BRACKET (271) 15 21
+    CLOSING_CURLY_BRACKET (272) 15 21 22 27
+    LOG_GT (273) 56
+    LOG_GE (274) 55
+    LOG_LT (275) 58
+    LOG_LE (276) 57
+    LOG_AND (277) 44 51
+    LOG_OR (278) 45 52
+    LOG_EQ (279) 53
+    LOG_NEQ (280) 54
+    LOG_NOT (281) 48
+    PRINTF (282)
+    WHILE (283) 38
+    IF (284) 39 40
+    ELSE (285) 39
+    SCANF (286)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (32)
+        on left: 0
+    empty (33)
+        on left: 1
+        on right: 6 17 24
+    TOP_LEVEL (34)
+        on left: 2
+        on right: 0
+    RETURN (35)
+        on left: 3
+        on right: 20
+    NUMBER (36)
+        on left: 4
+        on right: 28
+    IDENTIFIER (37)
+        on left: 5
+        on right: 16 18 23 27 29 41
+    statement_options (38)
+        on left: 6 7 8 9 10 11 12 13
+        on right: 14
+    STATEMENT (39)
+        on left: 14
+        on right: 2 15 21 22
+    BLOCK (40)
+        on left: 15
+        on right: 11 38 39 40
+    IDENTIFIER_DECLARATION (41)
+        on left: 16
+        on right: 7
+    function_params (42)
+        on left: 17 18 19
+        on right: 19 23
+    function_return (43)
+        on left: 20
+        on right: 22
+    function_body (44)
+        on left: 21 22
+        on right: 23
+    FUNCTION_DEFINITION (45)
+        on left: 23
+        on right: 8
+    function_args (46)
+        on left: 24 25 26
+        on right: 26 27
+    FUNCTION_CALL (47)
+        on left: 27
+        on right: 9
+    FACTOR (48)
+        on left: 28 29 30 31
+        on right: 30 32 33
+    TERM (49)
+        on left: 32 33
+        on right: 33 34 35
+    EXPRESSION (50)
+        on left: 34 35
+        on right: 20 25 35 36 37 41
+    CONDITIONAL (51)
+        on left: 36 37
+        on right: 31 37 38 39 40
+    WHILE_STATEMENT (52)
+        on left: 38
+        on right: 12
+    IF_STATEMENT (53)
+        on left: 39 40
+        on right: 13
+    ASSIGNMENT (54)
+        on left: 41
+        on right: 10
+    PRIOR_BIN_OP (55)
+        on left: 42 43 44
+        on right: 33
+    BIN_OP (56)
+        on left: 45 46 47
+        on right: 35
+    UN_OP (57)
+        on left: 48 49 50
+        on right: 30
+    LOGICAL_OP (58)
+        on left: 51 52 53 54 55 56 57 58
+        on right: 37
+
+
+State 0
+
+    0 $accept: . TOP_LEVEL $end
+
+    T_TYPE                 shift, and go to state 1
+    T_IDENTIFIER           shift, and go to state 2
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+    WHILE                  shift, and go to state 4
+    IF                     shift, and go to state 5
+
+    $default  reduce using rule 1 (empty)
+
+    empty                   go to state 6
+    TOP_LEVEL               go to state 7
+    IDENTIFIER              go to state 8
+    statement_options       go to state 9
+    STATEMENT               go to state 10
+    BLOCK                   go to state 11
+    IDENTIFIER_DECLARATION  go to state 12
+    FUNCTION_DEFINITION     go to state 13
+    FUNCTION_CALL           go to state 14
+    WHILE_STATEMENT         go to state 15
+    IF_STATEMENT            go to state 16
+    ASSIGNMENT              go to state 17
+
+
+State 1
+
+   16 IDENTIFIER_DECLARATION: T_TYPE . IDENTIFIER
+   23 FUNCTION_DEFINITION: T_TYPE . IDENTIFIER OPENING_BRACKET function_params CLOSING_BRACKET function_body
+
+    T_IDENTIFIER  shift, and go to state 2
+
+    IDENTIFIER  go to state 18
+
+
+State 2
+
+    5 IDENTIFIER: T_IDENTIFIER .
+
+    $default  reduce using rule 5 (IDENTIFIER)
+
+
+State 3
+
+   15 BLOCK: OPENING_CURLY_BRACKET . STATEMENT CLOSING_CURLY_BRACKET
+
+    T_TYPE                 shift, and go to state 1
+    T_IDENTIFIER           shift, and go to state 2
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+    WHILE                  shift, and go to state 4
+    IF                     shift, and go to state 5
+
+    $default  reduce using rule 1 (empty)
+
+    empty                   go to state 6
+    IDENTIFIER              go to state 8
+    statement_options       go to state 9
+    STATEMENT               go to state 19
+    BLOCK                   go to state 11
+    IDENTIFIER_DECLARATION  go to state 12
+    FUNCTION_DEFINITION     go to state 13
+    FUNCTION_CALL           go to state 14
+    WHILE_STATEMENT         go to state 15
+    IF_STATEMENT            go to state 16
+    ASSIGNMENT              go to state 17
+
+
+State 4
+
+   38 WHILE_STATEMENT: WHILE . OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK
+
+    OPENING_BRACKET  shift, and go to state 20
+
+
+State 5
+
+   39 IF_STATEMENT: IF . OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK ELSE BLOCK
+   40             | IF . OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK
+
+    OPENING_BRACKET  shift, and go to state 21
+
+
+State 6
+
+    6 statement_options: empty .
+
+    $default  reduce using rule 6 (statement_options)
+
+
+State 7
+
+    0 $accept: TOP_LEVEL . $end
+
+    $end  shift, and go to state 22
+
+
+State 8
+
+   27 FUNCTION_CALL: IDENTIFIER . OPENING_BRACKET function_args CLOSING_CURLY_BRACKET
+   41 ASSIGNMENT: IDENTIFIER . T_ASSIGN EXPRESSION
+
+    T_ASSIGN         shift, and go to state 23
+    OPENING_BRACKET  shift, and go to state 24
+
+
+State 9
+
+   14 STATEMENT: statement_options . SEMICOLON
+
+    SEMICOLON  shift, and go to state 25
+
+
+State 10
+
+    2 TOP_LEVEL: STATEMENT .
+
+    $default  reduce using rule 2 (TOP_LEVEL)
+
+
+State 11
+
+   11 statement_options: BLOCK .
+
+    $default  reduce using rule 11 (statement_options)
+
+
+State 12
+
+    7 statement_options: IDENTIFIER_DECLARATION .
+
+    $default  reduce using rule 7 (statement_options)
+
+
+State 13
+
+    8 statement_options: FUNCTION_DEFINITION .
+
+    $default  reduce using rule 8 (statement_options)
+
+
+State 14
+
+    9 statement_options: FUNCTION_CALL .
+
+    $default  reduce using rule 9 (statement_options)
+
+
+State 15
+
+   12 statement_options: WHILE_STATEMENT .
+
+    $default  reduce using rule 12 (statement_options)
+
+
+State 16
+
+   13 statement_options: IF_STATEMENT .
+
+    $default  reduce using rule 13 (statement_options)
+
+
+State 17
+
+   10 statement_options: ASSIGNMENT .
+
+    $default  reduce using rule 10 (statement_options)
+
+
+State 18
+
+   16 IDENTIFIER_DECLARATION: T_TYPE IDENTIFIER .
+   23 FUNCTION_DEFINITION: T_TYPE IDENTIFIER . OPENING_BRACKET function_params CLOSING_BRACKET function_body
+
+    OPENING_BRACKET  shift, and go to state 26
+
+    $default  reduce using rule 16 (IDENTIFIER_DECLARATION)
+
+
+State 19
+
+   15 BLOCK: OPENING_CURLY_BRACKET STATEMENT . CLOSING_CURLY_BRACKET
+
+    CLOSING_CURLY_BRACKET  shift, and go to state 27
+
+
+State 20
+
+   38 WHILE_STATEMENT: WHILE OPENING_BRACKET . CONDITIONAL CLOSING_BRACKET BLOCK
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER       go to state 33
+    IDENTIFIER   go to state 34
+    FACTOR       go to state 35
+    TERM         go to state 36
+    EXPRESSION   go to state 37
+    CONDITIONAL  go to state 38
+    UN_OP        go to state 39
+
+
+State 21
+
+   39 IF_STATEMENT: IF OPENING_BRACKET . CONDITIONAL CLOSING_BRACKET BLOCK ELSE BLOCK
+   40             | IF OPENING_BRACKET . CONDITIONAL CLOSING_BRACKET BLOCK
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER       go to state 33
+    IDENTIFIER   go to state 34
+    FACTOR       go to state 35
+    TERM         go to state 36
+    EXPRESSION   go to state 37
+    CONDITIONAL  go to state 40
+    UN_OP        go to state 39
+
+
+State 22
+
+    0 $accept: TOP_LEVEL $end .
+
+    $default  accept
+
+
+State 23
+
+   41 ASSIGNMENT: IDENTIFIER T_ASSIGN . EXPRESSION
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER      go to state 33
+    IDENTIFIER  go to state 34
+    FACTOR      go to state 35
+    TERM        go to state 36
+    EXPRESSION  go to state 41
+    UN_OP       go to state 39
+
+
+State 24
+
+   27 FUNCTION_CALL: IDENTIFIER OPENING_BRACKET . function_args CLOSING_CURLY_BRACKET
+
+    COMMA            shift, and go to state 42
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    $default  reduce using rule 1 (empty)
+
+    empty          go to state 43
+    NUMBER         go to state 33
+    IDENTIFIER     go to state 34
+    function_args  go to state 44
+    FACTOR         go to state 35
+    TERM           go to state 36
+    EXPRESSION     go to state 45
+    UN_OP          go to state 39
+
+
+State 25
+
+   14 STATEMENT: statement_options SEMICOLON .
+
+    $default  reduce using rule 14 (STATEMENT)
+
+
+State 26
+
+   23 FUNCTION_DEFINITION: T_TYPE IDENTIFIER OPENING_BRACKET . function_params CLOSING_BRACKET function_body
+
+    COMMA   shift, and go to state 46
+    T_TYPE  shift, and go to state 47
+
+    $default  reduce using rule 1 (empty)
+
+    empty            go to state 48
+    function_params  go to state 49
+
+
+State 27
+
+   15 BLOCK: OPENING_CURLY_BRACKET STATEMENT CLOSING_CURLY_BRACKET .
+
+    $default  reduce using rule 15 (BLOCK)
+
+
+State 28
+
+    4 NUMBER: T_NUMBER .
+
+    $default  reduce using rule 4 (NUMBER)
+
+
+State 29
+
+   50 UN_OP: T_PLUS .
+
+    $default  reduce using rule 50 (UN_OP)
+
+
+State 30
+
+   49 UN_OP: T_MINUS .
+
+    $default  reduce using rule 49 (UN_OP)
+
+
+State 31
+
+   31 FACTOR: OPENING_BRACKET . CONDITIONAL CLOSING_BRACKET
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER       go to state 33
+    IDENTIFIER   go to state 34
+    FACTOR       go to state 35
+    TERM         go to state 36
+    EXPRESSION   go to state 37
+    CONDITIONAL  go to state 50
+    UN_OP        go to state 39
+
+
+State 32
+
+   48 UN_OP: LOG_NOT .
+
+    $default  reduce using rule 48 (UN_OP)
+
+
+State 33
+
+   28 FACTOR: NUMBER .
+
+    $default  reduce using rule 28 (FACTOR)
+
+
+State 34
+
+   29 FACTOR: IDENTIFIER .
+
+    $default  reduce using rule 29 (FACTOR)
+
+
+State 35
+
+   32 TERM: FACTOR .
+
+    $default  reduce using rule 32 (TERM)
+
+
+State 36
+
+   33 TERM: TERM . PRIOR_BIN_OP FACTOR
+   34 EXPRESSION: TERM .
+
+    T_MULT   shift, and go to state 51
+    T_DIV    shift, and go to state 52
+    LOG_AND  shift, and go to state 53
+
+    LOG_AND   [reduce using rule 34 (EXPRESSION)]
+    $default  reduce using rule 34 (EXPRESSION)
+
+    PRIOR_BIN_OP  go to state 54
+
+
+State 37
+
+   35 EXPRESSION: EXPRESSION . BIN_OP TERM
+   36 CONDITIONAL: EXPRESSION .
+
+    T_PLUS   shift, and go to state 55
+    T_MINUS  shift, and go to state 56
+    LOG_OR   shift, and go to state 57
+
+    LOG_OR    [reduce using rule 36 (CONDITIONAL)]
+    $default  reduce using rule 36 (CONDITIONAL)
+
+    BIN_OP  go to state 58
+
+
+State 38
+
+   37 CONDITIONAL: CONDITIONAL . LOGICAL_OP EXPRESSION
+   38 WHILE_STATEMENT: WHILE OPENING_BRACKET CONDITIONAL . CLOSING_BRACKET BLOCK
+
+    CLOSING_BRACKET  shift, and go to state 59
+    LOG_GT           shift, and go to state 60
+    LOG_GE           shift, and go to state 61
+    LOG_LT           shift, and go to state 62
+    LOG_LE           shift, and go to state 63
+    LOG_AND          shift, and go to state 64
+    LOG_OR           shift, and go to state 65
+    LOG_EQ           shift, and go to state 66
+    LOG_NEQ          shift, and go to state 67
+
+    LOGICAL_OP  go to state 68
+
+
+State 39
+
+   30 FACTOR: UN_OP . FACTOR
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER      go to state 33
+    IDENTIFIER  go to state 34
+    FACTOR      go to state 69
+    UN_OP       go to state 39
+
+
+State 40
+
+   37 CONDITIONAL: CONDITIONAL . LOGICAL_OP EXPRESSION
+   39 IF_STATEMENT: IF OPENING_BRACKET CONDITIONAL . CLOSING_BRACKET BLOCK ELSE BLOCK
+   40             | IF OPENING_BRACKET CONDITIONAL . CLOSING_BRACKET BLOCK
+
+    CLOSING_BRACKET  shift, and go to state 70
+    LOG_GT           shift, and go to state 60
+    LOG_GE           shift, and go to state 61
+    LOG_LT           shift, and go to state 62
+    LOG_LE           shift, and go to state 63
+    LOG_AND          shift, and go to state 64
+    LOG_OR           shift, and go to state 65
+    LOG_EQ           shift, and go to state 66
+    LOG_NEQ          shift, and go to state 67
+
+    LOGICAL_OP  go to state 68
+
+
+State 41
+
+   35 EXPRESSION: EXPRESSION . BIN_OP TERM
+   41 ASSIGNMENT: IDENTIFIER T_ASSIGN EXPRESSION .
+
+    T_PLUS   shift, and go to state 55
+    T_MINUS  shift, and go to state 56
+    LOG_OR   shift, and go to state 57
+
+    $default  reduce using rule 41 (ASSIGNMENT)
+
+    BIN_OP  go to state 58
+
+
+State 42
+
+   26 function_args: COMMA . function_args
+
+    COMMA            shift, and go to state 42
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    $default  reduce using rule 1 (empty)
+
+    empty          go to state 43
+    NUMBER         go to state 33
+    IDENTIFIER     go to state 34
+    function_args  go to state 71
+    FACTOR         go to state 35
+    TERM           go to state 36
+    EXPRESSION     go to state 45
+    UN_OP          go to state 39
+
+
+State 43
+
+   24 function_args: empty .
+
+    $default  reduce using rule 24 (function_args)
+
+
+State 44
+
+   27 FUNCTION_CALL: IDENTIFIER OPENING_BRACKET function_args . CLOSING_CURLY_BRACKET
+
+    CLOSING_CURLY_BRACKET  shift, and go to state 72
+
+
+State 45
+
+   25 function_args: EXPRESSION .
+   35 EXPRESSION: EXPRESSION . BIN_OP TERM
+
+    T_PLUS   shift, and go to state 55
+    T_MINUS  shift, and go to state 56
+    LOG_OR   shift, and go to state 57
+
+    $default  reduce using rule 25 (function_args)
+
+    BIN_OP  go to state 58
+
+
+State 46
+
+   19 function_params: COMMA . function_params
+
+    COMMA   shift, and go to state 46
+    T_TYPE  shift, and go to state 47
+
+    $default  reduce using rule 1 (empty)
+
+    empty            go to state 48
+    function_params  go to state 73
+
+
+State 47
+
+   18 function_params: T_TYPE . IDENTIFIER
+
+    T_IDENTIFIER  shift, and go to state 2
+
+    IDENTIFIER  go to state 74
+
+
+State 48
+
+   17 function_params: empty .
+
+    $default  reduce using rule 17 (function_params)
+
+
+State 49
+
+   23 FUNCTION_DEFINITION: T_TYPE IDENTIFIER OPENING_BRACKET function_params . CLOSING_BRACKET function_body
+
+    CLOSING_BRACKET  shift, and go to state 75
+
+
+State 50
+
+   31 FACTOR: OPENING_BRACKET CONDITIONAL . CLOSING_BRACKET
+   37 CONDITIONAL: CONDITIONAL . LOGICAL_OP EXPRESSION
+
+    CLOSING_BRACKET  shift, and go to state 76
+    LOG_GT           shift, and go to state 60
+    LOG_GE           shift, and go to state 61
+    LOG_LT           shift, and go to state 62
+    LOG_LE           shift, and go to state 63
+    LOG_AND          shift, and go to state 64
+    LOG_OR           shift, and go to state 65
+    LOG_EQ           shift, and go to state 66
+    LOG_NEQ          shift, and go to state 67
+
+    LOGICAL_OP  go to state 68
+
+
+State 51
+
+   42 PRIOR_BIN_OP: T_MULT .
+
+    $default  reduce using rule 42 (PRIOR_BIN_OP)
+
+
+State 52
+
+   43 PRIOR_BIN_OP: T_DIV .
+
+    $default  reduce using rule 43 (PRIOR_BIN_OP)
+
+
+State 53
+
+   44 PRIOR_BIN_OP: LOG_AND .
+
+    $default  reduce using rule 44 (PRIOR_BIN_OP)
+
+
+State 54
+
+   33 TERM: TERM PRIOR_BIN_OP . FACTOR
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER      go to state 33
+    IDENTIFIER  go to state 34
+    FACTOR      go to state 77
+    UN_OP       go to state 39
+
+
+State 55
+
+   47 BIN_OP: T_PLUS .
+
+    $default  reduce using rule 47 (BIN_OP)
+
+
+State 56
+
+   46 BIN_OP: T_MINUS .
+
+    $default  reduce using rule 46 (BIN_OP)
+
+
+State 57
+
+   45 BIN_OP: LOG_OR .
+
+    $default  reduce using rule 45 (BIN_OP)
+
+
+State 58
+
+   35 EXPRESSION: EXPRESSION BIN_OP . TERM
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER      go to state 33
+    IDENTIFIER  go to state 34
+    FACTOR      go to state 35
+    TERM        go to state 78
+    UN_OP       go to state 39
+
+
+State 59
+
+   38 WHILE_STATEMENT: WHILE OPENING_BRACKET CONDITIONAL CLOSING_BRACKET . BLOCK
+
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+
+    BLOCK  go to state 79
+
+
+State 60
+
+   56 LOGICAL_OP: LOG_GT .
+
+    $default  reduce using rule 56 (LOGICAL_OP)
+
+
+State 61
+
+   55 LOGICAL_OP: LOG_GE .
+
+    $default  reduce using rule 55 (LOGICAL_OP)
+
+
+State 62
+
+   58 LOGICAL_OP: LOG_LT .
+
+    $default  reduce using rule 58 (LOGICAL_OP)
+
+
+State 63
+
+   57 LOGICAL_OP: LOG_LE .
+
+    $default  reduce using rule 57 (LOGICAL_OP)
+
+
+State 64
+
+   51 LOGICAL_OP: LOG_AND .
+
+    $default  reduce using rule 51 (LOGICAL_OP)
+
+
+State 65
+
+   52 LOGICAL_OP: LOG_OR .
+
+    $default  reduce using rule 52 (LOGICAL_OP)
+
+
+State 66
+
+   53 LOGICAL_OP: LOG_EQ .
+
+    $default  reduce using rule 53 (LOGICAL_OP)
+
+
+State 67
+
+   54 LOGICAL_OP: LOG_NEQ .
+
+    $default  reduce using rule 54 (LOGICAL_OP)
+
+
+State 68
+
+   37 CONDITIONAL: CONDITIONAL LOGICAL_OP . EXPRESSION
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER      go to state 33
+    IDENTIFIER  go to state 34
+    FACTOR      go to state 35
+    TERM        go to state 36
+    EXPRESSION  go to state 80
+    UN_OP       go to state 39
+
+
+State 69
+
+   30 FACTOR: UN_OP FACTOR .
+
+    $default  reduce using rule 30 (FACTOR)
+
+
+State 70
+
+   39 IF_STATEMENT: IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET . BLOCK ELSE BLOCK
+   40             | IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET . BLOCK
+
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+
+    BLOCK  go to state 81
+
+
+State 71
+
+   26 function_args: COMMA function_args .
+
+    $default  reduce using rule 26 (function_args)
+
+
+State 72
+
+   27 FUNCTION_CALL: IDENTIFIER OPENING_BRACKET function_args CLOSING_CURLY_BRACKET .
+
+    $default  reduce using rule 27 (FUNCTION_CALL)
+
+
+State 73
+
+   19 function_params: COMMA function_params .
+
+    $default  reduce using rule 19 (function_params)
+
+
+State 74
+
+   18 function_params: T_TYPE IDENTIFIER .
+
+    $default  reduce using rule 18 (function_params)
+
+
+State 75
+
+   23 FUNCTION_DEFINITION: T_TYPE IDENTIFIER OPENING_BRACKET function_params CLOSING_BRACKET . function_body
+
+    OPENING_BRACKET        shift, and go to state 82
+    OPENING_CURLY_BRACKET  shift, and go to state 83
+
+    function_body  go to state 84
+
+
+State 76
+
+   31 FACTOR: OPENING_BRACKET CONDITIONAL CLOSING_BRACKET .
+
+    $default  reduce using rule 31 (FACTOR)
+
+
+State 77
+
+   33 TERM: TERM PRIOR_BIN_OP FACTOR .
+
+    $default  reduce using rule 33 (TERM)
+
+
+State 78
+
+   33 TERM: TERM . PRIOR_BIN_OP FACTOR
+   35 EXPRESSION: EXPRESSION BIN_OP TERM .
+
+    T_MULT   shift, and go to state 51
+    T_DIV    shift, and go to state 52
+    LOG_AND  shift, and go to state 53
+
+    LOG_AND   [reduce using rule 35 (EXPRESSION)]
+    $default  reduce using rule 35 (EXPRESSION)
+
+    PRIOR_BIN_OP  go to state 54
+
+
+State 79
+
+   38 WHILE_STATEMENT: WHILE OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK .
+
+    $default  reduce using rule 38 (WHILE_STATEMENT)
+
+
+State 80
+
+   35 EXPRESSION: EXPRESSION . BIN_OP TERM
+   37 CONDITIONAL: CONDITIONAL LOGICAL_OP EXPRESSION .
+
+    T_PLUS   shift, and go to state 55
+    T_MINUS  shift, and go to state 56
+    LOG_OR   shift, and go to state 57
+
+    LOG_OR    [reduce using rule 37 (CONDITIONAL)]
+    $default  reduce using rule 37 (CONDITIONAL)
+
+    BIN_OP  go to state 58
+
+
+State 81
+
+   39 IF_STATEMENT: IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK . ELSE BLOCK
+   40             | IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK .
+
+    ELSE  shift, and go to state 85
+
+    $default  reduce using rule 40 (IF_STATEMENT)
+
+
+State 82
+
+   22 function_body: OPENING_BRACKET . STATEMENT function_return CLOSING_CURLY_BRACKET
+
+    T_TYPE                 shift, and go to state 1
+    T_IDENTIFIER           shift, and go to state 2
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+    WHILE                  shift, and go to state 4
+    IF                     shift, and go to state 5
+
+    $default  reduce using rule 1 (empty)
+
+    empty                   go to state 6
+    IDENTIFIER              go to state 8
+    statement_options       go to state 9
+    STATEMENT               go to state 86
+    BLOCK                   go to state 11
+    IDENTIFIER_DECLARATION  go to state 12
+    FUNCTION_DEFINITION     go to state 13
+    FUNCTION_CALL           go to state 14
+    WHILE_STATEMENT         go to state 15
+    IF_STATEMENT            go to state 16
+    ASSIGNMENT              go to state 17
+
+
+State 83
+
+   21 function_body: OPENING_CURLY_BRACKET . STATEMENT CLOSING_CURLY_BRACKET
+
+    T_TYPE                 shift, and go to state 1
+    T_IDENTIFIER           shift, and go to state 2
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+    WHILE                  shift, and go to state 4
+    IF                     shift, and go to state 5
+
+    $default  reduce using rule 1 (empty)
+
+    empty                   go to state 6
+    IDENTIFIER              go to state 8
+    statement_options       go to state 9
+    STATEMENT               go to state 87
+    BLOCK                   go to state 11
+    IDENTIFIER_DECLARATION  go to state 12
+    FUNCTION_DEFINITION     go to state 13
+    FUNCTION_CALL           go to state 14
+    WHILE_STATEMENT         go to state 15
+    IF_STATEMENT            go to state 16
+    ASSIGNMENT              go to state 17
+
+
+State 84
+
+   23 FUNCTION_DEFINITION: T_TYPE IDENTIFIER OPENING_BRACKET function_params CLOSING_BRACKET function_body .
+
+    $default  reduce using rule 23 (FUNCTION_DEFINITION)
+
+
+State 85
+
+   39 IF_STATEMENT: IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK ELSE . BLOCK
+
+    OPENING_CURLY_BRACKET  shift, and go to state 3
+
+    BLOCK  go to state 88
+
+
+State 86
+
+   22 function_body: OPENING_BRACKET STATEMENT . function_return CLOSING_CURLY_BRACKET
+
+    T_RETURN  shift, and go to state 89
+
+    RETURN           go to state 90
+    function_return  go to state 91
+
+
+State 87
+
+   21 function_body: OPENING_CURLY_BRACKET STATEMENT . CLOSING_CURLY_BRACKET
+
+    CLOSING_CURLY_BRACKET  shift, and go to state 92
+
+
+State 88
+
+   39 IF_STATEMENT: IF OPENING_BRACKET CONDITIONAL CLOSING_BRACKET BLOCK ELSE BLOCK .
+
+    $default  reduce using rule 39 (IF_STATEMENT)
+
+
+State 89
+
+    3 RETURN: T_RETURN .
+
+    $default  reduce using rule 3 (RETURN)
+
+
+State 90
+
+   20 function_return: RETURN . EXPRESSION
+
+    T_NUMBER         shift, and go to state 28
+    T_IDENTIFIER     shift, and go to state 2
+    T_PLUS           shift, and go to state 29
+    T_MINUS          shift, and go to state 30
+    OPENING_BRACKET  shift, and go to state 31
+    LOG_NOT          shift, and go to state 32
+
+    NUMBER      go to state 33
+    IDENTIFIER  go to state 34
+    FACTOR      go to state 35
+    TERM        go to state 36
+    EXPRESSION  go to state 93
+    UN_OP       go to state 39
+
+
+State 91
+
+   22 function_body: OPENING_BRACKET STATEMENT function_return . CLOSING_CURLY_BRACKET
+
+    CLOSING_CURLY_BRACKET  shift, and go to state 94
+
+
+State 92
+
+   21 function_body: OPENING_CURLY_BRACKET STATEMENT CLOSING_CURLY_BRACKET .
+
+    $default  reduce using rule 21 (function_body)
+
+
+State 93
+
+   20 function_return: RETURN EXPRESSION .
+   35 EXPRESSION: EXPRESSION . BIN_OP TERM
+
+    T_PLUS   shift, and go to state 55
+    T_MINUS  shift, and go to state 56
+    LOG_OR   shift, and go to state 57
+
+    $default  reduce using rule 20 (function_return)
+
+    BIN_OP  go to state 58
+
+
+State 94
+
+   22 function_body: OPENING_BRACKET STATEMENT function_return CLOSING_CURLY_BRACKET .
+
+    $default  reduce using rule 22 (function_body)
