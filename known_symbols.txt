@@ -1,0 +1,11 @@
+binary operations: + - * /
+assignment: =
+comparisons: == != > >= < <=
+logical operations: and or not
+
+delimiters: ; ( ) { }
+
+builtin types: integer string
+string: "string text"
+identifier: alfa123
+digits: 0 1 2 3 4 5 6 7 8 9 10 15 20
