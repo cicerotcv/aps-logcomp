@@ -5,13 +5,18 @@
 To run a program, just use the compiler as python module:
 
 ```shell
-$ python -m compiler ./demo/logical.k
+$ python -m compiler ./demo/simple_program.k
 ```
 
+### Unit Tests
 
+```shell
+$ python -m pytest -v --no-header
+```
 
+### Demo
 
-
+![demo](demo/simple_program.png)
 
 ### EBNF
 ```
@@ -60,20 +65,4 @@ LETTER = ( "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L"
 "w" | "x" | "y" | "z" ) ;
 
 DIGIT = ( "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0" ) ;
-```
-
-```
-# integer declaration
-integer number_identifier;
-
-# string declaration
-string string_identifier;
-
-# function definition
-integer function_name( integer a, string b ) {
-  # block
-}
-
-# function call statement
-number_identifier = function_name(number_identifier, string_identifier);
 ```
