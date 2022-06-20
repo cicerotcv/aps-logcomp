@@ -8,6 +8,7 @@
 ","             { return COMMA; }
 ";"             { return SEMICOLON; }
 
+"$"             { return T_CONCAT; }
 "+"             { return T_PLUS; }
 "-"             { return T_MINUS; }
 "/"             { return T_DIV; }
@@ -29,11 +30,11 @@
 "=="                      { return LOG_EQ; }
 "!="                      { return LOG_NEQ; }
 
-"printf"                  { return PRINTF; }
+"stdout"                  { return PRINTF; }
 "while"                   { return WHILE; }
 "if"                      { return IF; }
 "else"                    { return ELSE; }
-"scanf"                   { return SCANF; }
+"stdin"                   { return SCANF; }
 
 
 ["int" | "str" | "void"]  { return T_TYPE; }

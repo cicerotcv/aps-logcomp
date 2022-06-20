@@ -1,3 +1,20 @@
+# K Language
+
+### Run
+
+To run a program, just use the compiler as python module:
+
+```shell
+$ python -m compiler ./demo/logical.k
+```
+
+
+
+
+
+
+### EBNF
+```
 TOP_LEVEL = { STATEMENT } ;
 
 BLOCK = "{" , { STATEMENT }, "}" ;
@@ -43,6 +60,7 @@ LETTER = ( "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L"
 "w" | "x" | "y" | "z" ) ;
 
 DIGIT = ( "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0" ) ;
+```
 
 ```
 # integer declaration
@@ -58,5 +76,4 @@ integer function_name( integer a, string b ) {
 
 # function call statement
 number_identifier = function_name(number_identifier, string_identifier);
-
 ```

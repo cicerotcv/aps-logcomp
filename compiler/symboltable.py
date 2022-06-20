@@ -1,3 +1,4 @@
+from compiler.constants import T_VOID
 from compiler.errors import IdentifierError, TypeError
 
 
@@ -30,12 +31,12 @@ class SymbolTable:
                 f"Identifier not declared: '{identifier_name}'")
 
     def ensure_same_type(self, identifier_name, value):
-        (current_type, _) = self._identifiers.get(identifier_name)
+        (expected_type, _) = self._identifiers.get(identifier_name)
         (new_type, _) = value
 
-        if current_type != new_type:
+        if expected_type != T_VOID and expected_type != new_type:
             raise TypeError(
-                f"Expected type '{current_type}' and got '{new_type}'")
+                f"Expected type '{expected_type}' and got '{new_type}'")
 
     def describe(self):
         print(self._identifiers.keys())
@@ -67,7 +68,7 @@ class FuncTable:
     @staticmethod
     def ensure_declared(identifier_name):
         if identifier_name not in FuncTable._identifiers.keys():
-            raise IdentifierError("Function not declared")
+            raise IdentifierError(f"Function not declared: '{identifier_name}'")
 
     @staticmethod
     def describe():

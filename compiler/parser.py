@@ -260,22 +260,6 @@ class Parser:
             tokens.select_next()
             N = BinOp(op, [N, Parser.parse_expression()])
 
-            # if tokens.current.type == LOG_NEQ:
-            #     tokens.select_next()
-            #     N = BinOp(LOG_EQ, [N, Parser.parse_expression()])
-
-            # if tokens.current.type == LOG_EQ:
-            #     tokens.select_next()
-            #     N = BinOp(LOG_EQ, [N, Parser.parse_expression()])
-
-            # elif tokens.current.type == LOG_GT:
-            #     tokens.select_next()
-            #     N = BinOp(LOG_GT, [N, Parser.parse_expression()])
-
-            # elif tokens.current.type == LOG_LT:
-            #     tokens.select_next()
-            #     N = BinOp(LOG_LT, [N, Parser.parse_expression()])
-
         return N
 
     @staticmethod
@@ -314,22 +298,9 @@ class Parser:
         N = Parser.parse_factor()  # node
 
         while tokens.current.type in [OP_DIV, OP_MULTI, LOG_AND]:
-
-            if tokens.current.type == OP_DIV:
-                tokens.select_next()
-                N = BinOp(OP_DIV, [N, Parser.parse_factor()])
-
-            elif tokens.current.type == OP_MULTI:
-                tokens.select_next()
-                N = BinOp(OP_MULTI, [N, Parser.parse_factor()])
-
-            elif tokens.current.type == LOG_AND:
-                tokens.select_next()
-                N = BinOp(LOG_AND, [N, Parser.parse_factor()])
-
-            else:
-                error_message = f'Unexpected {tokens.current}'
-                raise SyntaxError(error_message)
+            op = tokens.current.type
+            tokens.select_next()
+            N = BinOp(op, [N, Parser.parse_factor()])
 
         return N
 
@@ -364,7 +335,6 @@ class Parser:
                     tokens.select_next()
                 else:
                     tokens.select_next()
-
             else:
                 N = Identifier(identifier_name)
 

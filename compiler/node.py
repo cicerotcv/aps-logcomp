@@ -1,6 +1,6 @@
 from typing import List
 
-from compiler.constants import (LOG_AND, LOG_EQ, LOG_GE, LOG_GT, LOG_LT, LOG_NEQ, LOG_OR, OP_CONCAT,
+from compiler.constants import (LOG_AND, LOG_EQ, LOG_GE, LOG_GT, LOG_LE, LOG_LT, LOG_NEQ, LOG_OR, OP_CONCAT,
                                 OP_DIV, OP_MINUS, OP_MULTI, OP_NOT, OP_PLUS, T_FUNCTION, T_INT, T_STR, T_VOID)
 from compiler.errors import FunctionError, OperationError
 from compiler.symboltable import FuncTable, SymbolTable
@@ -200,16 +200,14 @@ class FuncCall(Node):
 
         for var_dec, value in zip(arg_decs, values):
             var_dec.evaluate(new_symbol_table)
-            new_symbol_table.set(
-                var_dec.children[0], symbol_table.get(value.value))
+            new_symbol_table.set(var_dec.children[0], value.evaluate(symbol_table))
 
         (type, value) = block.evaluate(new_symbol_table)
 
         expected_type = self_dec.value
 
         if type != expected_type:
-            raise FunctionError(
-                f"Type '{type}' doesn't match the expected return type '{expected_type}'")
+            raise FunctionError(f"Type '{type}' doesn't match the expected return type '{expected_type}'")
 
         return (type, value)
 
@@ -237,21 +235,25 @@ class While(Node):
 
 class If(Node):
     def evaluate(self, symbol_table):
+        ret_val = None
         # if { expression } : { this } else: { that }
         if len(self.children) == 3:
             expression, this, that = self.children
             (_, evaluation) = expression.evaluate(symbol_table)
             if (evaluation):
-                return this.evaluate(symbol_table)
+                ret_val = this.evaluate(symbol_table)
             else:
-                return that.evaluate(symbol_table)
+                ret_val = that.evaluate(symbol_table)
 
         # if { expression } : { this }
         if len(self.children) == 2:
             expression, this = self.children
             (_, evaluation) = expression.evaluate(symbol_table)
             if (evaluation):
-                return this.evaluate(symbol_table)
+                ret_val = this.evaluate(symbol_table)
+        
+        if ret_val is not None:
+            return ret_val
 
 
 class Block(Node):
@@ -259,7 +261,6 @@ class Block(Node):
         value = (T_VOID, None)
         for child in self.children:
             block_return = child.evaluate(symbol_table)
-            if block_return is not None:
-                value = block_return
-                break
+            if block_return is not None and block_return[0] is not T_VOID:
+                return block_return
         return value

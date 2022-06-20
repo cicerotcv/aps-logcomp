@@ -131,7 +131,7 @@ class TestOperations:
 
     @staticmethod
     def test_concat():
-        origin = "."
+        origin = "$"
         token = Tokenizer(origin).select_next()
         compare_token(token, Token(OP_CONCAT))
 
@@ -245,13 +245,13 @@ class TestLogicalOperators:
 class TestReservedWords:
     @staticmethod
     def test_printf():
-        origin = 'printf'
+        origin = 'stdout'
         token = Tokenizer(origin).select_next()
         compare_token(token, Token(R_PRINTF))
 
     @staticmethod
     def test_scanf():
-        origin = 'scanf'
+        origin = 'stdin'
         token = Tokenizer(origin).select_next()
         compare_token(token, Token(R_SCANF))
 

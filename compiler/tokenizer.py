@@ -65,7 +65,7 @@ class Tokenizer:
             self.position += 1
             return self.current
 
-        if self.origin[self.position] == '.':
+        if self.origin[self.position] == '$':
             self.current = Token(OP_CONCAT)
             self.position += 1
             return self.current
@@ -139,12 +139,10 @@ class Tokenizer:
 
         if self.origin[self.position] == '!':
             self.position += 1
-            if self.position < len(self.origin) and self.origin[self.position] == "=":
-                self.current = Token(LOG_NEQ)
+            if self.origin[self.position] == "=":
                 self.position += 1
-            else:
-                self.current = Token(OP_NOT)
-            return self.current
+                self.current = Token(LOG_NEQ)
+                return self.current
 
         if self.origin[self.position] in STRING_DELIMITERS:
             opening = self.origin[self.position]
